@@ -1,0 +1,105 @@
+import pandas as pd
+import gspread #Para trabajar con Google Sheets
+from google.oauth2.service_account import Credentials #Para autenticación con Google Sheets
+import json
+from sklearn.feature_extraction.text import CountVectorizer
+from sklearn.ensemble import RandomForestRegressor
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import mean_squared_error
+import openai
+
+#Credenciales para google sheets
+SERVICE_ACCOUNT_FILE = "file.json"
+SCOPES = ["https://www.googleapis.com/auth/spreadsheets"]
+creds = Credentials.from_service_account_file(SERVICE_ACCOUNT_FILE, scopes=SCOPES)
+client = gspread.authorize(creds)
+
+openai.api_key = "Cambiar por API PROPIA!"
+
+#Abrir los sheets que necesito
+#Respuestas
+SHEET_ID = "1JYvt8rXfsdPwMhXQh7mYV2USqGOkhjWBoCi9wkQ6nHc"
+
+response_sheets = { 
+    "FormatoDeSolicitud": ["FormatoDeSolicitud_Id","MarcoLogicoyTeoria_MatrizMLyTC_FinImpacto", "MarcoLogicoyTeoria_MatrizMLyTC_Propósito3" ] 
+}
+
+df_answers = []
+
+for sheet_name, columns in response_sheets.items():
+    sheet = client.open_by_key(SHEET_ID).worksheet(sheet_name)
+    df = pd.DataFrame(sheet.get_all_records())
+
+    available_columns = [col for col in columns if col in df.columns]
+    df_answers.append(df[available_columns])
+
+SHEET_ID2 = "1JYvt8rXfsdPwMhXQh7mYV2USqGOkhjWBoCi9wkQ6nHc"
+
+df_final = df_answers[0] if df_answers else None
+
+# Prompt
+def get_score(mission_text, design_text):
+    prompt = f"""
+    Eres un experto evaluando a Organizaciones de la Sociedad Civil en México. Evalúa la Dimensión de Eficacia, que tiene dos variables: Misión y Diseño.
+    
+    Misión: {mission_text}
+    Diseño: {design_text}
+    
+    Califica cada una en una escala de 0.0, 1.67, 5.00, 6.67, 8.33, 10.00, y proporciona una calificación total sumando ambas.
+    NO me des TEXTO, solo dame el número de calificación en ORDEN: Misión, Diseño, Total. Después de las tres calificaciones, NO termines el output con un punto.
+    """
+
+    client = openai.OpenAI(api_key="Cambiar por API PROPIA!")  # New client-based approach
+
+    response = client.chat.completions.create(
+        model="ft:gpt-4o-2024-08-06:osc:eficiencia:B8vdMQtm",
+        messages=[{"role": "user", "content": prompt}],
+        max_tokens=100
+    )
+
+    return response.choices[0].message.content.strip()
+
+def procesar_calificacion_para_json(calif_str):
+    calificacion_split = calif_str.split(", ")
+    
+    # Asignamos los valores directamente a variables
+    calificacion_mision = str(calificacion_split[0])
+    calificacion_diseño = str(calificacion_split[1])
+    calificacion_total = str(calificacion_split[2])
+    
+    # Devolvemos un diccionario con las calificaciones
+    return {
+        "calificacion_mision": calificacion_mision,
+        "calificacion_diseño": calificacion_diseño,
+        "calificacion_total": calificacion_total
+    }
+
+
+if df_final is not None:
+    results = []
+
+    for _, row in df_final.iterrows():
+        solicitud_id = row["FormatoDeSolicitud_Id"]
+        mision_text = row["MarcoLogicoyTeoria_MatrizMLyTC_FinImpacto"]
+        design_text = row["MarcoLogicoyTeoria_MatrizMLyTC_Propósito3"]
+
+        score = get_score(mision_text, design_text)
+        califa_pa_Json = procesar_calificacion_para_json(score)
+        results.append([solicitud_id, califa_pa_Json["calificacion_mision"], califa_pa_Json["calificacion_diseño"], califa_pa_Json["calificacion_total"]])
+
+
+    df_results = pd.DataFrame(results, columns=["FormatoDeSolicitud_Id", "Misión", "Diseño", "Total"])
+
+    # Al sheets
+    result_sheet = client.open_by_key(SHEET_ID2).worksheet("Calificacion")
+
+    existing_headers = result_sheet.row_values(1)
+    if not existing_headers:
+        # Si no hay encabezados, agregar los encabezados
+        result_sheet.insert_row(["FormatoDeSolicitud_Id", "Calif_Misión", "Calif_Diseño", "Total"], 1)
+    result_sheet.append_rows(df_results.values.tolist())  # Al sheet
+
+    print("Results saved successfully!")
+
+else:
+    print("No data found.")
