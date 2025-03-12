@@ -60,7 +60,7 @@ Códigos necesarios para correr el proceso, junto con el set de instrucciones pa
 
   
   ## EJECUTAR
-  Desde la terminal de Visual Studio, escribir:
+  Desde la terminal de Visual Studio Code, escribir:
 
     streamlit run selenium1.py
 
