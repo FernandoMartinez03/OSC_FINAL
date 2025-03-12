@@ -16,7 +16,9 @@ Códigos necesarios para correr el proceso, junto con el set de instrucciones pa
   <img width="1162" alt="Screenshot 2025-03-11 at 18 17 57" src="https://github.com/user-attachments/assets/0758a1bc-913b-478f-af5b-a0a4a60e06bd" />
   3. Crear un nuevo archivo de Google Sheets.
   
-4. Click en Compartir, y dar permiso de editor a cualquiera que tenga el vínculo.
+  4. Click en Compartir, y dar permiso de editor a cualquiera que tenga el vínculo.
+
+  5. Copiar el ID del Google Sheet que recién se creó.<img width="1354" alt="Screenshot 2025-03-11 at 18 28 59"         
   
-5. Copiar el ID del Google Sheet que recién se creó.<img width="1354" alt="Screenshot 2025-03-11 at 18 28 59"         
+
   src="https://github.com/user-attachments/assets/69a56611-bf29-4f33-95ad-d615fa32ccc2" />
