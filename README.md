@@ -59,4 +59,12 @@ Códigos necesarios para correr el proceso, junto con el set de instrucciones pa
     openai.OpenAI(api_key="API")
 
   
-     
+  ## EJECUTAR
+  Desde la terminal de Visual Studio, escribir:
+
+    streamlit run selenium1.py
+
+  Con ello, se desplegará la Interfaz de Usuario, desde donde ya se puede seguir el proceso completo: obtener los datos, y evaluar la dimensión de eficacia.
+
+  <img width="559" alt="Screenshot 2025-03-11 at 19 40 53" src="https://github.com/user-attachments/assets/35655366-2533-44dd-8076-0c0f2cd1c618" />
+
