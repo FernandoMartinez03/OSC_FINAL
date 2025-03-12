@@ -1,6 +1,22 @@
 # OSC_FINAL
 Códigos necesarios para correr el proceso, junto con el set de instrucciones para funcionamiento adecuado.
 
+  ## REQUERIMIENTOS
+
+  Se recomienda descargar <b>Visual Studio Code</b> y ahí abrir el código que se descargue de este repositorio.
+
+  Se necesita tener instalado python en su equipo, para ello, se puede visitar la liga aquí adjuntada: [python](https://learn.microsoft.com/es-es/windows/python/beginners)
+
+  Al tener ambos requerimientos instalados, abrir el archivo en Visual Studio Code, dar click a Terminal->Nueva Terminal, y poner:
+
+    py -m ensurepip --upgrade
+
+  Click enter, para instalar el paquete pip.
+
+  Posteriormente, en la misma terminal, ejecutar las siguientes líneas:
+
+    pip install selenium gspread streamlit google-auth pandas
+    pip install pandas gspread google-auth openai
 
 ## MANUAL DE FUNCIONAMIENTO
 
@@ -30,15 +46,17 @@ Códigos necesarios para correr el proceso, junto con el set de instrucciones pa
   6. Obtener el API personal de openAI, o pedirme a mí que la proporcione: fernandoenriquemtzrdz@gmail.com
   7. En el Código selenium1.py y gpteficiencia.py, buscar las variables:
      
-    SHEET ID
-    ShEET_ID2
+    SHEET ID = SHEET ID QUE OBTUVIMOS AL INICIO.
+    ShEET_ID2  = SHEET ID QUE OBTUVIMOS AL INICIO. 
     
-  Y sustituir por el Sheet ID que obtuvimos al inicio.
-  8. En el Código selenium1.py y gpteficiencia.py, buscar las variables:
+  Y sustituir por el Sheet ID que obtuvimos al inicio. OJO: EN COMILLAS, EJEMPLO: 
+
+    SHEET ID = "ID(*#&$^1u23"
+    
+  8. En el Código selenium1.py y gpteficiencia.py, buscar las variables, con el cuidado de ponerlas entre comillas también.:
 
     openai.api_key
     openai.OpenAI(api_key="API")
 
-  Y sustituir por el API propio de OpenAI.
+  
      
-  9. SHEET_ID
