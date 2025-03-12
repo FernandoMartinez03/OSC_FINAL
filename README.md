@@ -53,11 +53,17 @@ Códigos necesarios para correr el proceso, junto con el set de instrucciones pa
 
     SHEET ID = "ID(*#&$^1u23"
     
-  8. En el Código selenium1.py y gpteficiencia.py, buscar las variables, con el cuidado de ponerlas entre comillas también.:
+  8. En el Código selenium1.py y gpteficiencia.py, buscar las variables, con el cuidado de ponerlas entre comillas también:
 
     openai.api_key
     openai.OpenAI(api_key="API")
 
+  9. En el Código selenium1.py, introducir las credenciales pertinentes según el caso, con el cuidado de las ya mencionadas comillas:
+
+    email_field.send_keys("Aquí introducir tu correo")
+    email_field2.send_keys("Usuario/correo")
+
+    password_field.send_keys("Aquí Ingresar contraseña")
   
   ## EJECUTAR
   Desde la terminal de Visual Studio Code, escribir:
