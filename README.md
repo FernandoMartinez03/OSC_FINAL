@@ -19,7 +19,7 @@ Códigos necesarios para correr el proceso, junto con el set de instrucciones pa
   
     2.6 Formato JSON.
   
-    2.7 Cambiar nombre al recién descargado archivo JSON a <b>file.json.</b> y guardarlo en el directorio donde tienen guardado el código.
+    2.7 Cambiar nombre al recién descargado archivo JSON a "file.json". y guardarlo en el directorio donde tienen guardado el código.
   <img width="1162" alt="Screenshot 2025-03-11 at 18 17 57" src="https://github.com/user-attachments/assets/0758a1bc-913b-478f-af5b-a0a4a60e06bd" />
   3. Crear un nuevo archivo de Google Sheets.
   
