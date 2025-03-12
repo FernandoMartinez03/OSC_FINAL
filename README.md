@@ -17,5 +17,5 @@ Códigos necesarios para correr el proceso, junto con el set de instrucciones pa
   3. Crear un nuevo archivo de Google Sheets.
   4. Click en Compartir, y dar permiso de editor a cualquiera que tenga el vínculo.
   5. Copiar el ID del Google Sheet que recién se creó.
-  6. ![google-sheet-and-tab-id-1](https://github.com/user-attachments/assets/25c56604-d725-439e-82c9-c34c07f294c5)
-
+  
+![google-sheet-and-tab-id-1](https://github.com/user-attachments/assets/28f44487-8b86-4960-a3f4-81a7190da5e4)
