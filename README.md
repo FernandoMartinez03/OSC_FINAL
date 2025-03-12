@@ -19,7 +19,7 @@ Códigos necesarios para correr el proceso, junto con el set de instrucciones pa
   
     2.6 Formato JSON.
   
-  2.7 Cambiar nombre al recién descargado archivo JSON a <b>file.json.</b>
+    2.7 Cambiar nombre al recién descargado archivo JSON a <b>file.json.</b> y guardarlo en el directorio donde tienen guardado el código.
   <img width="1162" alt="Screenshot 2025-03-11 at 18 17 57" src="https://github.com/user-attachments/assets/0758a1bc-913b-478f-af5b-a0a4a60e06bd" />
   3. Crear un nuevo archivo de Google Sheets.
   
@@ -27,3 +27,18 @@ Códigos necesarios para correr el proceso, junto con el set de instrucciones pa
   
   5. Copiar el ID del Google Sheet que recién se creó.<img width="1354" alt="Screenshot 2025-03-11 at 18 28 59"         
   <img width="1162" alt="Screenshot 2025-03-11 at 18 17 57" src="https://github.com/user-attachments/assets/69a56611-bf29-4f33-95ad-d615fa32ccc2" />
+  6. Obtener el API personal de openAI, o pedirme a mí que la proporcione: fernandoenriquemtzrdz@gmail.com
+  7. En el Código selenium1.py y gpteficiencia.py, buscar las variables:
+     
+    SHEET ID
+    ShEET_ID2
+    
+  Y sustituir por el Sheet ID que obtuvimos al inicio.
+  8. En el Código selenium1.py y gpteficiencia.py, buscar las variables:
+
+    openai.api_key
+    openai.OpenAI(api_key="API")
+
+  Y sustituir por el API propio de OpenAI.
+     
+  9. SHEET_ID
